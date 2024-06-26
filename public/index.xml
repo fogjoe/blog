@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>fogjoe</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on fogjoe</description><webfeeds:icon>http://localhost:1313/images/photo.png</webfeeds:icon>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 14 Aug 2023 08:56:23 +0800</lastBuildDate>
+    
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>测试文章</title>
+      <link>http://localhost:1313/category/java/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</link>
+      <pubDate>Mon, 14 Aug 2023 08:56:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/category/java/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</guid>
+      <description>测试文章描述</description>
+      <content:encoded><![CDATA[<p>有接入过第三方服务的同学应该都接触过公钥、私钥这类的说明，尤其是一些对参数要求验证的服务，比如支付类的。</p>
+<p>通常对于高保密要求的参数都会有加密要求，这时候，如果你之前不了解加密算法，就很容易被公钥、私钥的使用给绕迷糊了。有时候虽然接口都调通了，但是还是一头雾水，这就通了?</p>
+<p>那接下来我们就来解开这团迷雾。咱们只讲逻辑和一部分逻辑，不讲数学算法，因为数学这块儿我也不是很懂。</p>
+<p>加密算法在大类上分为对称机密和非对称加密，都用来加密，只不过使用场景、性能、安全性方面有些不同。</p>
+<h2 id="首先说什么是加密呢">首先说什么是加密呢?</h2>
+<p>加密就是通过一种方式将一个显而易见的东西变成难以理解的东西。</p>
+<p>比如这儿有个字符串“我真棒”，这三个字儿要摆在你面前不是一眼就知道我很棒了吗。</p>
+<p>但是我要给你看这样一串东西呢？你还能一下子知道是什么意思吗？</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>剑走偏锋，无头浏览器是什么神奇的家伙</title>
+      <link>http://localhost:1313/category/other/%E6%97%A0%E5%A4%B4%E6%B5%8F%E8%A7%88%E5%99%A8/</link>
+      <pubDate>Thu, 13 Jul 2023 08:56:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/category/other/%E6%97%A0%E5%A4%B4%E6%B5%8F%E8%A7%88%E5%99%A8/</guid>
+      <description>浏览器是再熟悉不过的东西了，几乎每个人用过，比如 Chrome、FireFox、Safari，尤其是我们程序员，可谓开发最强辅助，摸鱼最好的伴</description>
+      <content:encoded><![CDATA[<p><img src="https://hexo.moonkite.cn/blog/%E6%97%A0%E5%A4%B4%E6%B5%8F%E8%A7%88%E5%99%A8.png"></p>
+<p>浏览器是再熟悉不过的东西了，几乎每个人用过，比如 Chrome、FireFox、Safari，尤其是我们程序员，可谓开发最强辅助，摸鱼最好的伴侣。</p>
+<p>浏览器能干的事儿，无头浏览器都能干，而且很多时候比标准浏览器还要更好用，而且能实现一些很好玩儿的功能，我们能借助无头浏览器比肩标准浏览器强大的功能，而且又能灵活的用程序控制的特性，做出一些很有意思的产品功能来，稍后我们细说。</p>
+<h2 id="什么是浏览器">什么是浏览器</h2>
+<p>关于浏览器还有一个很好玩儿的梗，对于一些对计算机、对互联网不太了解的同学，你跟他说浏览器，他/她就默认是百度了，因为好多小白的浏览器都设置了百度为默认页面。所以很多小白将浏览器和搜索引擎（99%是百度）划等号了。</p>
+<p><img src="https://hexo.moonkite.cn/blog/image-20230606155021528.png"></p>
+<p>浏览器里我百分之99的时间都是用 Chrome，不过有一说一，这玩意是真耗内存，我基本上是十几、二十几个的 tab 开着，再加上几个 IDEA 进程，16G 的内存根本就不够耗的。</p>
+<p>以 Chrome 浏览器为例，Chrome 由以下几部分组成：</p>
+<ol>
+<li>渲染引擎（Rendering Engine）：Chromium使用的渲染引擎主要有两个选项：WebKit和Blink。WebKit是最初由苹果开发的渲染引擎，后来被Google采用并继续开发。Blink则是Google从WebKit分支出来并进行独立开发的渲染引擎，目前Chromium主要使用Blink作为其默认的渲染引擎。</li>
+<li>JavaScript引擎（JavaScript Engine）：Chromium使用V8引擎作为其JavaScript引擎。V8是由Google开发的高性能JavaScript引擎，它负责解析和执行网页中的JavaScript代码。</li>
+<li>网络栈（Network Stack）：Chromium的网络栈负责处理网络通信。它支持各种网络协议，包括HTTP、HTTPS、WebSocket等，并提供了网络请求、响应处理和数据传输等功能。</li>
+<li>布局引擎（Layout Engine）：Chromium使用布局引擎来计算网页中元素的位置和大小，并确定它们在屏幕上的布局。布局引擎将CSS样式应用于DOM元素，并计算它们的几何属性。</li>
+<li>绘制引擎（Painting Engine）：绘制引擎负责将网页内容绘制到屏幕上，生成最终的图像。它使用图形库和硬件加速技术来高效地进行绘制操作。</li>
+<li>用户界面（User Interface）：Chromium提供了用户界面的支持，包括地址栏、标签页、书签管理、设置等功能。它还提供了扩展和插件系统，允许用户根据自己的需求进行个性化定制。</li>
+<li>其他组件：除了上述主要组件外，Chromium还包括其他一些辅助组件，如存储系统、安全模块、媒体处理、数据库支持等，以提供更全面的浏览器功能。</li>
+</ol>
+<p>Chrome 浏览器光源码就有十几个G，2000多万行代码，可见，要实现一个功能完善的浏览器是一项浩大的工程。</p>
+<h2 id="什么是无头浏览器">什么是无头浏览器</h2>
+<p>无头浏览器（Headless Browser）是一种浏览器程序，没有图形用户界面（GUI），但能够执行与普通浏览器相似的功能。无头浏览器能够加载和解析网页，执行JavaScript代码，处理网页事件，并提供对DOM（文档对象模型）的访问和操作能力。</p>
+<p>与传统浏览器相比，无头浏览器的主要区别在于其没有可见的窗口或用户界面。这使得它在后台运行时，不会显示实际的浏览器窗口，从而节省了系统资源，并且可以更高效地执行自动化任务。</p>
+<p>常见的无头浏览器包括Headless Chrome（Chrome的无头模式）、PhantomJS、Puppeteer（基于Chrome的无头浏览器库）等。它们提供了编程接口，使开发者能够通过代码自动化控制和操作浏览器行为。</p>
+<p>无头浏览器其实就是看不见的浏览器，所有的操作都要通过代码调用 API 来控制，所以浏览器能干的事儿，无头浏览器都能干，而且很多事儿做起来比标准的浏览器更简单。</p>
+<p>我举几个常用的功能来说明一下无头浏览器的主要使用场景</p>
+<ol>
+<li><strong>自动化测试：</strong> 无头浏览器可以模拟用户行为，执行自动化测试任务，例如对网页进行加载、表单填写、点击按钮、检查页面元素等。</li>
+<li><strong>数据抓取：</strong> 无头浏览器可用于爬取网页数据，自动访问网站并提取所需的信息，用于数据分析、搜索引擎优化等。</li>
+<li><strong>屏幕截图：</strong> 无头浏览器可以加载网页并生成网页的截图，用于生成快照、生成预览图像等。</li>
+<li><strong>服务器端渲染：</strong> 无头浏览器可以用于服务器端渲染（Server-side Rendering），将动态生成的页面渲染为静态HTML，提供更好的性能和搜索引擎优化效果。</li>
+<li>生成 PDF 文件：使用浏览器自带的生成 PDF 功能，将目标页面转换成 PDF 。</li>
+</ol>
+<h2 id="使用无头浏览器做一些好玩的功能">使用无头浏览器做一些好玩的功能</h2>
+<p>开篇就说了使用无头浏览器可以实现一些好玩儿的功能，这些功能别看不大，但是使用场景还是很多的，有些开发者就是抓住这些小功能，开发出好用的产品，运气好的话还能赚到钱，尤其是在国外市场。（在国内做收费的产品确实不容易赚到钱）</p>
+<p>下面我们就来介绍两个好玩儿而且有用的功能。</p>
+<p>前面的自动化测试、服务端渲染就不说了。</p>
+<p>自动化测试太专业了，一般用户用不到，只有开发者或者测试工程师用。</p>
+<p>服务端渲染使用无头浏览器确实没必要，因为有太多成熟的方案了，连 React 都有服务端渲染的能力(RSC)。</p>
+<h3 id="网页截图功能">网页截图功能</h3>
+<p>我们可能见过一些网站提供下载文字卡片或者图文卡片的功能。比如读到一段想要分享的内容，选中之后将文本端所在的区域生成一张图片。</p>
+<p><img src="https://hexo.moonkite.cn/blog/image-20230606114154145.png"></p>
+<p>其实就是通过调用浏览器自身的 API <code>page.screenshot</code>，可以对整个页面或者选定的区域生成图片。</p>
+<p>通过这个方法，我们可以做一个浏览器插件，用户选定某个区域后，直接生成对应的图片。这类功能在手机APP上很常见，在浏览器上一搬的网站都不提供。</p>
+<p>说到这儿好像和无头浏览器都没什么关系吧，这都是标准浏览器中做的事儿，用户已经打开了页面，在浏览器上操作自己看到的内容，顺理成章。</p>
+<p>但是如果这个操作是批量的呢，或者是在后台静默完成的情况呢？</p>
+<p>那就需要无头浏览器来出手了，无头浏览器虽然没有操作界面，但是也具备绘制引擎的完整功能，仍然可以生成图像，利用这个功能，就可以批量的、静默生成图像了，并且可以截取完整的网页或者部分区域。</p>
+<p>Puppeteer 是无头浏览器中的佼佼者，提供了简单好用的 API ，不过是 nodejs 版的。</p>
+<p>如果是用 Java 开发的话，有一个替代品，叫做 Jvppeteer，提供了和 Puppeteer  几乎一模一样的 API。</p>
+<p>下面这段代码就展示了如何用 Jvppeteer 来实现网页的截图。</p>
+<p>下面这个方法是对整个网页进行截图，只需要给定网页 url 和 最终的图片路径就可以了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">screenShotWx</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">,</span><span class="w"> </span><span class="n">ExecutionException</span><span class="p">,</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">BrowserFetcher</span><span class="p">.</span><span class="na">downloadIfNotExist</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">arrayList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// MacOS 要这样写，指定Chrome的位置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">executablePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">LaunchOptions</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LaunchOptionsBuilder</span><span class="p">().</span><span class="na">withExecutablePath</span><span class="p">(</span><span class="n">executablePath</span><span class="p">).</span><span class="na">withArgs</span><span class="p">(</span><span class="n">arrayList</span><span class="p">).</span><span class="na">withHeadless</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">withIgnoreHTTPSErrors</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// Windows 和 Linux 这样就可以，不用指定 Chrome 的安装位置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//LaunchOptions options = new LaunchOptionsBuilder().withArgs(arrayList).withHeadless(true).withIgnoreHTTPSErrors(true).build();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--no-sandbox&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-setuid-sandbox&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--ignore-certificate-errors&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-gpu&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-web-security&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-infobars&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-extensions&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-bundled-ppapi-flash&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--allow-running-insecure-content&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--mute-audio&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Browser</span><span class="w"> </span><span class="n">browser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Puppeteer</span><span class="p">.</span><span class="na">launch</span><span class="p">(</span><span class="n">options</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Page</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">browser</span><span class="p">.</span><span class="na">newPage</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">setJavaScriptEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">setUserAgent</span><span class="p">(</span><span class="s">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 Edg/83.0.478.37&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">setCacheEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">onConsole</span><span class="p">((</span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&#34;==&gt; {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="na">text</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">PageNavigateOptions</span><span class="w"> </span><span class="n">pageNavigateOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PageNavigateOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">pageNavigateOptions</span><span class="p">.</span><span class="na">setTimeout</span><span class="p">(</span><span class="n">1000000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//dom加载完毕就算导航完成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">pageNavigateOptions</span><span class="p">.</span><span class="na">setWaitUntil</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonList</span><span class="p">(</span><span class="s">&#34;domcontentloaded&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">goTo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">pageNavigateOptions</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">autoScroll</span><span class="p">(</span><span class="n">page</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ElementHandle</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">page</span><span class="p">.</span><span class="na">$</span><span class="p">(</span><span class="s">&#34;body&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="na">boundingBox</span><span class="p">().</span><span class="na">getWidth</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="na">boundingBox</span><span class="p">().</span><span class="na">getHeight</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Viewport</span><span class="w"> </span><span class="n">viewport</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Viewport</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">viewport</span><span class="p">.</span><span class="na">setWidth</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">width</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置视口宽度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">viewport</span><span class="p">.</span><span class="na">setHeight</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置视口高度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">setViewport</span><span class="p">(</span><span class="n">viewport</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ScreenshotOptions</span><span class="w"> </span><span class="n">screenshotOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ScreenshotOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setType</span><span class="p">(</span><span class="s">&#34;jpeg&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setFullPage</span><span class="p">(</span><span class="n">Boolean</span><span class="p">.</span><span class="na">FALSE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//screenshotOptions.setClip(clip);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setPath</span><span class="p">(</span><span class="n">path</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setQuality</span><span class="p">(</span><span class="n">100</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// 或者转换为 base64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//String base64Str = page.screenshot(screenshotOptions);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//System.out.println(base64Str);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">browser</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>一个自动滚屏的方法。</p>
+<p>虽然可以监听页面上的事件通知，比如 <code>domcontentloaded</code>，文档加载完成的通知，但是很多时候并不能监听到网页上的所有元素都加载完成了。对于那些滚动加载的页面，可以用这种方式模拟完全加载，加载完成之后再进行操作就可以了。</p>
+<p>使用自动滚屏的操作，可以模拟我们人为的在界面上下拉滚动条的操作，随着滚动条的下拉，页面上的元素会自然的加载，不管是同步的还有延迟异步的，比如图片、图表等。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">autoScroll</span><span class="p">(</span><span class="n">Page</span><span class="w"> </span><span class="n">page</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">page</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">page</span><span class="p">.</span><span class="na">evaluate</span><span class="p">(</span><span class="s">&#34;() =&gt; {\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;   return new Promise((resolve, reject) =&gt; {\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            //滚动的总高度\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            let totalHeight = 0;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            //每次向下滚动的高度 500 px\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            let distance = 500;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            let k = 0;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            let timeout = 1000;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            let url = window.location.href;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            let timer = setInterval(() =&gt; {\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                //滚动条向下滚动 distance\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                window.scrollBy(0, distance);\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                totalHeight += distance;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                k++;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                console.log(`当前第${k}次滚动，页面高度: ${totalHeight}`);\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                //页面的高度 包含滚动高度\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                let scrollHeight = document.body.scrollHeight;\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                //当滚动的总高度 大于 页面高度 说明滚到底了。也就是说到滚动条滚到底时，以上还会继续累加，直到超过页面高度\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                if (totalHeight &gt;= scrollHeight || k &gt;= 200) {\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                    clearInterval(timer);\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                    resolve();\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                    window.scrollTo(0, 0);\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;                }\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;            }, timeout);\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;        })\n&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;  }&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>调用截图方法截图，这里是对一篇公众号文章进行整个网页的截图。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenShotWx</span><span class="p">(</span><span class="s">&#34;https://mp.weixin.qq.com/s/MzCyWqcH1TCytpnHI8dVjA&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/Users/fengzheng/Desktop/PICTURE/wx.jpeg&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>或者也可以截取页面中的部分区域，比如某篇文章的正文部分，下面这个方法是截图一个博客文章的正文部分。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">screenShotJueJin</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">,</span><span class="w"> </span><span class="n">ExecutionException</span><span class="p">,</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">BrowserFetcher</span><span class="p">.</span><span class="na">downloadIfNotExist</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">arrayList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">executablePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">LaunchOptions</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LaunchOptionsBuilder</span><span class="p">().</span><span class="na">withExecutablePath</span><span class="p">(</span><span class="n">executablePath</span><span class="p">).</span><span class="na">withArgs</span><span class="p">(</span><span class="n">arrayList</span><span class="p">).</span><span class="na">withHeadless</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">withIgnoreHTTPSErrors</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//LaunchOptions options = new LaunchOptionsBuilder().withArgs(arrayList).withHeadless(true).withIgnoreHTTPSErrors(true).build();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--no-sandbox&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-setuid-sandbox&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Browser</span><span class="w"> </span><span class="n">browser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Puppeteer</span><span class="p">.</span><span class="na">launch</span><span class="p">(</span><span class="n">options</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Page</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">browser</span><span class="p">.</span><span class="na">newPage</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">PageNavigateOptions</span><span class="w"> </span><span class="n">pageNavigateOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PageNavigateOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">pageNavigateOptions</span><span class="p">.</span><span class="na">setTimeout</span><span class="p">(</span><span class="n">1000000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//dom加载完毕就算导航完成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">pageNavigateOptions</span><span class="p">.</span><span class="na">setWaitUntil</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonList</span><span class="p">(</span><span class="s">&#34;domcontentloaded&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">goTo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">pageNavigateOptions</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">WaitForSelectorOptions</span><span class="w"> </span><span class="n">waitForSelectorOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WaitForSelectorOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">waitForSelectorOptions</span><span class="p">.</span><span class="na">setTimeout</span><span class="p">(</span><span class="n">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">15</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">waitForSelectorOptions</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">Boolean</span><span class="p">.</span><span class="na">TRUE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// 指定截图的区域</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ElementHandle</span><span class="w"> </span><span class="n">elementHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">page</span><span class="p">.</span><span class="na">waitForSelector</span><span class="p">(</span><span class="s">&#34;article.article&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">waitForSelectorOptions</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Clip</span><span class="w"> </span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elementHandle</span><span class="p">.</span><span class="na">boundingBox</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Viewport</span><span class="w"> </span><span class="n">viewport</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Viewport</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ElementHandle</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">page</span><span class="p">.</span><span class="na">$</span><span class="p">(</span><span class="s">&#34;body&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="na">boundingBox</span><span class="p">().</span><span class="na">getWidth</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">viewport</span><span class="p">.</span><span class="na">setWidth</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">width</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置视口宽度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">viewport</span><span class="p">.</span><span class="na">setHeight</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">clip</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置视口高度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">page</span><span class="p">.</span><span class="na">setViewport</span><span class="p">(</span><span class="n">viewport</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">ScreenshotOptions</span><span class="w"> </span><span class="n">screenshotOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ScreenshotOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setType</span><span class="p">(</span><span class="s">&#34;jpeg&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setFullPage</span><span class="p">(</span><span class="n">Boolean</span><span class="p">.</span><span class="na">FALSE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setClip</span><span class="p">(</span><span class="n">clip</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setPath</span><span class="p">(</span><span class="n">path</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenshotOptions</span><span class="p">.</span><span class="na">setQuality</span><span class="p">(</span><span class="n">100</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// 或者生成图片的 base64编码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">base64Str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">page</span><span class="p">.</span><span class="na">screenshot</span><span class="p">(</span><span class="n">screenshotOptions</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">base64Str</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>调用方式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">screenShotJueJin</span><span class="p">(</span><span class="s">&#34;https://juejin.cn/post/7239715628172902437&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/Users/fengzheng/Desktop/PICTURE/juejin.jpeg&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>最后的效果是这样的，可以达到很清晰的效果。</p>
+<p><img src="https://hexo.moonkite.cn/blog/image-20230606143425476.png"></p>
+<h3 id="网页生成-pdf-功能">网页生成 PDF 功能</h3>
+<p>这个功能可太有用了，可以把一些网页转成离线版的文档。有人说直接保存网页不就行了，除了程序员，大部分人还是更能直接读 PDF ，而不会用离线存储的网页。</p>
+<p>我们可以在浏览器上使用浏览器的「打印」功能，用来将网页转换成 PDF 格式。</p>
+<p><img src="https://hexo.moonkite.cn/blog/image-20230606144145679.png"></p>
+<p>但这是直接在页面上操作，如果是批量操作呢，比如想把一个专栏的所有文章都生成 PDF呢，就可以用无头浏览器来做了。</p>
+<p>有的同学说，用其他的库也可以呀，Java 里面有很多生成 PDF 的开源库，可以把 HTML 转成 PDF，比如Apache PDFBox、IText 等，但是这些库应对一般的场景还行，对于那种页面上有延迟加载的图表啊、图片啊、脚本之类的就束手无策了。</p>
+<p>而无头浏览器就可以，你可以监听页面加载完成的事件，可以模拟操作，主动触发页面加载，甚至还可以在页面中添加自定义的样式、脚本等，让生成的 PDF 更加完整、美观。</p>
+<p>下面这个方法演示了如何将一个网页转成 PDF 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">pdf</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">savePath</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Browser</span><span class="w"> </span><span class="n">browser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">Page</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//自动下载，第一次下载后不会再下载</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">BrowserFetcher</span><span class="p">.</span><span class="na">downloadIfNotExist</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">arrayList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// MacOS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">executablePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">LaunchOptions</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LaunchOptionsBuilder</span><span class="p">().</span><span class="na">withExecutablePath</span><span class="p">(</span><span class="n">executablePath</span><span class="p">).</span><span class="na">withArgs</span><span class="p">(</span><span class="n">arrayList</span><span class="p">).</span><span class="na">withHeadless</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">withIgnoreHTTPSErrors</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="c1">// windows 或 linux</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//LaunchOptions options = new LaunchOptionsBuilder().withArgs(arrayList).withHeadless(true).withIgnoreHTTPSErrors(true).build();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--no-sandbox&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-setuid-sandbox&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--ignore-certificate-errors&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-gpu&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-web-security&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-infobars&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-extensions&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--disable-bundled-ppapi-flash&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--allow-running-insecure-content&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">arrayList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;--mute-audio&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">browser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Puppeteer</span><span class="p">.</span><span class="na">launch</span><span class="p">(</span><span class="n">options</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">browser</span><span class="p">.</span><span class="na">newPage</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">onConsole</span><span class="p">((</span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&#34;==&gt; {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">.</span><span class="na">text</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">setViewport</span><span class="p">(</span><span class="n">viewport</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">setJavaScriptEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">setUserAgent</span><span class="p">(</span><span class="s">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 Edg/83.0.478.37&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">setCacheEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//设置参数防止检测</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">evaluateOnNewDocument</span><span class="p">(</span><span class="s">&#34;() =&gt;{ Object.defineProperties(navigator,{ webdriver:{ get: () =&gt; undefined } }) }&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">evaluateOnNewDocument</span><span class="p">(</span><span class="s">&#34;() =&gt;{ window.navigator.chrome = { runtime: {},  }; }&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">evaluateOnNewDocument</span><span class="p">(</span><span class="s">&#34;() =&gt;{ Object.defineProperty(navigator, &#39;languages&#39;, { get: () =&gt; [&#39;en-US&#39;, &#39;en&#39;] }); }&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">evaluateOnNewDocument</span><span class="p">(</span><span class="s">&#34;() =&gt;{ Object.defineProperty(navigator, &#39;plugins&#39;, { get: () =&gt; [1, 2, 3, 4, 5,6], }); }&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">PageNavigateOptions</span><span class="w"> </span><span class="n">pageNavigateOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PageNavigateOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">pageNavigateOptions</span><span class="p">.</span><span class="na">setTimeout</span><span class="p">(</span><span class="n">1000000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//dom加载完毕就算导航完成</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="n">pageNavigateOptions</span><span class="p">.</span><span class="na">setWaitUntil</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonList</span><span class="p">(</span><span class="s">&#34;domcontentloaded&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">goTo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">pageNavigateOptions</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 添加自定义演示</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">StyleTagOptions</span><span class="w"> </span><span class="n">styleTagOptions1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StyleTagOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">styleTagOptions1</span><span class="p">.</span><span class="na">setContent</span><span class="p">(</span><span class="s">&#34;html {-webkit-print-color-adjust: exact} .table &gt; table &gt; tr:nth-child(1),.table &gt; table &gt; tr:nth-child(2) {background: #4074b0;} #tableB td:nth-child(2) {width:60%;}&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">addStyleTag</span><span class="p">(</span><span class="n">styleTagOptions1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//滚屏</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">autoScroll</span><span class="p">(</span><span class="n">page</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">1000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">PDFOptions</span><span class="w"> </span><span class="n">pdfOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PDFOptions</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//            pdfOptions.setHeight(&#34;5200&#34;);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">pdfOptions</span><span class="p">.</span><span class="na">setPath</span><span class="p">(</span><span class="n">savePath</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">page</span><span class="p">.</span><span class="na">pdf</span><span class="p">(</span><span class="n">pdfOptions</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&#34;生成pdf异常：{}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">page</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">page</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">browser</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">browser</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>调用生成 PDF 的方法，将一个微信公众号文章转成 PDF。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">pdfPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/Users/fengzheng/Desktop/PDF&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdfPath</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;/hello.pdf&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			 </span><span class="n">JvppeteerUtils</span><span class="p">.</span><span class="na">pdf</span><span class="p">(</span><span class="s">&#34;https://mp.weixin.qq.com/s/MzCyWqcH1TCytpnHI8dVjA&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">filePath</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>最终的效果，很清晰，样式都在，基本和页面一模一样。</p>
+<p><img src="https://hexo.moonkite.cn/blog/image-20230606150457020.png"></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>向量数据库是什么</title>
+      <link>http://localhost:1313/category/other/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BB%80%E4%B9%88/</link>
+      <pubDate>Sun, 02 Jul 2023 08:56:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/category/other/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
+      <description>最近有朋友面试的时候被面试官问了有关向量数据库的问题，朋友说啥是向量数据库，咋没听过呢。 最近 ChatGPT 以及类似的 AI 产品大火，不仅带火了英伟达的 GPU 芯片</description>
+      <content:encoded><![CDATA[<p>最近有朋友面试的时候被面试官问了有关向量数据库的问题，朋友说啥是向量数据库，咋没听过呢。</p>
+<p>最近 ChatGPT 以及类似的 AI 产品大火，不仅带火了英伟达的 GPU 芯片，也带火了向量数据库。</p>
+<p>其实向量数据库吧，很早就之前就有了，而且很多公司也在用，只不过最近借着AI的东风，被推到了台前，比如 Pinecone 这家向量数据库公司，估值约为 10 亿美元，刚刚融资 1 亿美元。</p>
+<p>再比如，这个&hellip;&hellip;</p>
+<p><img src="https://hexo.moonkite.cn/blog/image-20230625163312478.png"></p>
+<h2 id="什么是向量和向量化">什么是向量和向量化</h2>
+<p>向量数据库，顾名思义，存储的内容是向量。</p>
+<p>那什么又是向量呢？</p>
+<p>我们最早接触向量应该是在数学里面，例如一个二维的向量用(x,y)表示在x轴和y轴的值，用(x,y,z)表是在x轴、y轴和z轴的三维向量。还可以有更多的维度表示多维向量。</p>
+<p>向量数据库应用最多的场景就是相似度搜索，就是根据用户的一个输入匹配出几个相似度最高的结果。有点儿像模糊查询或者全文检索的意思，但是原理又不一样，全文检索的核心技术应该是分词+索引 ，而向量数据库是向量化（Embedding）+索引。</p>
+<p>索引就不用多说了，只要涉及到存储的，一定会用到索引。</p>
+<h3 id="向量化embedding">向量化（Embedding）</h3>
+<p>在 OpenAI 官网上专门有 Embedding 的介绍，并且提供了相关的模型API，叫做 ada，专门将数据 Embedding。</p>
+<p>Embedding 是用一个低维稠密向量来表示一个对象，使得这个向量能够表达相应对象的某些特征，同时向量之间的距离能反应对象之间的相似性。</p>
+<p>Embedding 是一个多维向量数组，由一系列数字组成，通过相关的算法可以将文本、音频、视频等内容转换为多维向量数组，并最终存储到向量数据库中。</p>
+<p>假设 <code>man</code>的向量数组可表示为 [0.1,0.2,0.1]，<code>woman</code>的向量数组可表示为[0.3,0.1,0.1]。</p>
+<p>下图中可以看到这些多维向量在向量空间中的关系，man和woman之间、king和queen之间，China和Beijing之间。</p>
+<p><img src="https://hexo.moonkite.cn/blog/Fvp0qCEXgAA6bnU.jpeg"></p>
+<p>各种各样的内容进行向量化之后，最终在向量空间会形成或近或疏的关系。比如下面这幅图中可以看出，如果你搜索一个动物相关的内容，肯定（大概率）不会匹配到运动员的那一堆数据中。</p>
+<p><img src="https://hexo.moonkite.cn/blog/1E2148AA-E0A2-4953-99F5-6E5255AC16D4.png"></p>
+<p>向量化的过程是一个复杂的过程，通常会用到经过大量训练和优化的大模型以及神经网络等厉害的技术，所以，个人或普通公司只能用大厂提供的付费服务，例如OpenAI 的 Ada 模型。</p>
+<p>为什么这么复杂呢，比如基于自然语言处理的方式向量化，不仅要分析文本本身的意思，还会包括情感分析、翻译等工作要处理，例如你搜索英文的 <code>apple</code>,也要能匹配上中文的<code>苹果</code>或其他的语种。还有如果你搜索<code>苹果太难吃了</code>，要不能匹配出<code>苹果太棒了</code>这种结果吧。</p>
+<p>目前主流的Embedding 方法主要有如下这三类：</p>
+<h4 id="矩阵分解法">矩阵分解法</h4>
+<p>矩阵分解法是一种常见的 Embedding 方法，它可以将高维的矩阵映射成两个低维矩阵的乘积，很好地解决了数据稀疏的问题。</p>
+<h4 id="基于自然语言处理的方法">基于自然语言处理的方法</h4>
+<p>自然语言处理（NLP）是一种人工智能技术，它涉及计算机对人类语言的理解和生成。NLP 包括许多任务，如文本分类、情感分析、命名实体识别、机器翻译和自动摘要等。NLP 技术可以帮助计算机处理和分析大量的文本数据，从而使计算机能够更好地理解人类语言并作出更准确的预测和决策。而基于 NLP 的 Embedding 方法的主要思想是将每个单词或短语映射到一个低维向量空间中，使得在这个向量空间中，相似的单词或短语在距离上更加接近，以便于支持语义查找与分析工作。常见的方法包括：</p>
+<ol>
+<li>Word2vec</li>
+<li>GloVe（Global Vectors for Word Representation）</li>
+<li>FastText</li>
+</ol>
+<h4 id="基于图的方法">基于图的方法</h4>
+<p>上述方法都是针对序列文本而设计的，而对于诸如社交网络分析、推荐系统、知识图谱等领域中的问题，如下图所示，数据对象之间更多呈现出图结构：</p>
+<p><img src="https://hexo.moonkite.cn/blog/graph-data.png"></p>
+<p>基于图的 Embedding 技术是一种将图数据（通常为高维稠密的矩阵）映射为低微稠密向量的过程，能够很好地解决图数据难以高效输入机器学习算法的问题。Graph Embedding 技术将图中的节点以低维稠密向量的形式进行表达，要求在原始图中相似 (不同的方法对相似的定义不同) 的节点其在低维表达空间也接近。常见的方法包括：</p>
+<ol>
+<li>DeepWalk</li>
+<li>Node2vec</li>
+<li>Metapath2vec</li>
+</ol>
+<h2 id="向量数据库的特点">向量数据库的特点</h2>
+<p>向量数据库的应用场景决定了其大概率需要存储海量的数据，而不是想关系型数据库那样存储确定的多少条数据。</p>
+<ul>
+<li>向量数据库要具具有高可用、高扩展性的架构；</li>
+<li>向量数据库是计算密集型应用，需要良好的硬件设备加速；</li>
+<li>高并发、低延迟</li>
+</ul>
+<h2 id="应用场景">应用场景</h2>
+<p>向量数据库的核心功能就是相似性匹配，所以，它的应用场景也是围绕着这个功能来的。</p>
+<ul>
+<li>文本搜索（包含语义的那种），最常见的功能；</li>
+<li>图片、语音、视频搜索，例如那种以图搜图的功能，当然，与之匹配的向量化的过程也比文字更复杂，例如语音的向量化要包括对语音进行特征化的提取，比如声纹等等。歌曲识别（非歌词的那种）就可以用向量化和向量数据库；</li>
+<li>推荐系统，根据系统给用户打的标签，给用户推荐相似度最高的商品、服务等；</li>
+<li>异常检测，相似度过低可以判断为异常，例如人脸识别功能，如果相似度过低，那可能就是非本人；</li>
+</ul>
+<p>最近的AI热潮掀起了不少新技术，感觉快要学不过来，不过大多数的内容想学也学不会了，只能学学周边技术，用用人家的API了。</p>
+<p>毕竟像OpenAI这种，里面的员工的职位都是xxx科学家，不是xxx工程师了。</p>
+<p>但是，该关注还是要关注一下，说不好哪天就用到自己的产品里了。</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>测试文章</title>
+      <link>http://localhost:1313/2023/05/24/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</link>
+      <pubDate>Wed, 24 May 2023 12:56:23 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2023/05/24/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</guid>
+      <description>只是测试文章，可以在此输入你的文章正文。</description>
+      <content:encoded><![CDATA[<p>只是测试文章，可以在此输入你的文章正文。</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
