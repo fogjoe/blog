@@ -1,7 +1,7 @@
 # ------------------------------------- #
 # ---- General Settings --------------- #
 # ------------------------------------- #
-baseURL = "https://www.fogjoe.com"
+baseURL = " https://fogjoe.github.io/blog/"
 title = "fogjoe"
 theme = "hugo-theme-den"
 enableRobotsTXT = true       # generate robots.txt
